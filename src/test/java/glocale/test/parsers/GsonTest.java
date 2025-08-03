@@ -1,20 +1,19 @@
-package glocale.test;
+package glocale.test.parsers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import co.casterlabs.rakurai.json.Rson;
-import co.casterlabs.rakurai.json.element.JsonObject;
-import co.casterlabs.rakurai.json.serialization.JsonParseException;
-import co.casterlabs.rakurai.json.validation.JsonValidationException;
-import glocale.Glocale;
-import glocale.parser.RsonParser;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
-public class RsonTest {
+import glocale.Glocale;
+import glocale.parser.GsonParser;
+
+public class GsonTest {
 
     @Test
-    public void simple() throws JsonValidationException, JsonParseException {
+    public void simple() {
         String json = "{\r\n"
             + "    \"foo\": \"bar\",\r\n"
             + "    \"foo.baz\": \"biff\"\r\n"
@@ -23,7 +22,7 @@ public class RsonTest {
     }
 
     @Test
-    public void complex() throws JsonValidationException, JsonParseException {
+    public void complex() {
         String json = "{\r\n"
             + "    \"foo\": {\r\n"
             + "        \".\": \"bar\",\r\n"
@@ -33,11 +32,11 @@ public class RsonTest {
         this.parse(json);
     }
 
-    private void parse(String json) throws JsonValidationException, JsonParseException {
-        JsonObject obj = Rson.DEFAULT.fromJson(json, JsonObject.class);
+    private void parse(String json) {
+        JsonObject obj = new Gson().fromJson(json, JsonObject.class);
 
         Glocale gl = new Glocale()
-            .use(RsonParser.parse(obj));
+            .use(GsonParser.parse(obj));
 
         assertEquals("bar", gl.render("foo"));
         assertEquals("biff", gl.render("foo.baz"));
