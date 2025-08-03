@@ -1,0 +1,16 @@
+# IntelliJ
+*.iml
+.idea/
+
+# Eclipse
+.metadata/
+.settings/
+.project
+.classpath
+
+# Common
+.DS_Store
+
+# Maven
+target/
+dependency-reduced-pom.xml
