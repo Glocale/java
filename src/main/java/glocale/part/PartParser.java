@@ -23,16 +23,16 @@ public class PartParser {
         for (int idx = 0; idx < str.length; idx++) {
             char c = str[idx];
 
-            if (c == ESCAPE) {
-                // Next char is escaped
-                escaped = true;
-                continue;
-            }
-
             if (escaped) {
                 // Do not attempt to lex if the char was escaped
                 escaped = false;
                 inProgress.append(c);
+                continue;
+            }
+
+            if (c == ESCAPE) {
+                // Next char is escaped
+                escaped = true;
                 continue;
             }
 
