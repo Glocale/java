@@ -92,6 +92,10 @@
 			<id>central</id>
 			<url>https://repo.maven.apache.org/maven2</url>
 		</repository>
+		<repository>
+			<id>casterlabs-maven</id>
+			<url>https://repo.casterlabs.co/maven</url>
+		</repository>
 	</repositories>
 
 	<dependencies>
@@ -116,5 +120,11 @@
 		</dependency>
 
 		<!-- Parsers -->
+		<dependency>
+			<groupId>co.casterlabs</groupId>
+			<artifactId>Rson</artifactId>
+			<version>1.18.0</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 </project>
